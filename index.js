@@ -19,3 +19,37 @@ fetch(BaseUrl)
      </ul>
    </div>` });
 })
+const mode = localStorage.getItem("themeMode")
+if( mode == "dark-mode")
+{
+    document.body.classList.replace("dark-mode", "light-mode")
+    logo.classList.replace("dark-mode", "light-mode")
+    navlinks.forEach(x=> x.classList.replace("dark-mode", "light-mode"))
+
+}
+mode || localStorage.setItem("currentTheme", "light-mode")
+document.addEventListener("DOMContentLoaded", function(){
+  let button= document.querySelector("#Button")
+  let logo= document.querySelector("#Logo")
+  let navlinks= document.querySelectorAll(".nav-link")
+  let currentTheme= localStorage.getItem("themeMode") ?? "light"
+  document.body.classList.add(currentTheme + "-mode")
+  logo.classList.add(currentTheme + "-mode")
+  navlinks.forEach(x=> x.classList.add(currentTheme + "-mode"))
+  button.addEventListener("click", function(){
+  if(document.body.classList.contains("light-mode"))
+  {
+    document.body.classList.replace("light-mode", "dark-mode")
+    logo.classList.replace("light-mode", "dark-mode")
+    navlinks.forEach(x=> x.classList.replace("light-mode", "dark-mode"))
+    localStorage.setItem("currentTheme", "dark-mode")
+  }
+  else
+  {
+    document.body.classList.replace("dark-mode", "light-mode")
+    logo.classList.replace("dark-mode", "light-mode")
+    navlinks.forEach(x=> x.classList.replace("dark-mode", "light-mode"))
+    localStorage.setItem("currentTheme", "light-mode")
+  }
+  })
+})
